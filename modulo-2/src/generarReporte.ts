@@ -1,4 +1,5 @@
 import { EstadoMatricula } from "./domain/types/EstadoMatricula";
+import { assertNever } from "./assertNever";
 
 export function generarReporte(
   estado: EstadoMatricula
@@ -6,18 +7,18 @@ export function generarReporte(
 
   switch (estado.tipo) {
 
-    case "ACTIVA":
-      return `Matrícula activa con ${estado.asignaturas.length} asignaturas`;
+  case "ACTIVA":
+    return `Matrícula activa con ${estado.asignaturas.length} asignaturas`;
 
-    case "SUSPENDIDA":
-      return `Matrícula suspendida. Motivo: ${estado.motivo}`;
+  case "SUSPENDIDA":
+    return `Matrícula suspendida. Motivo: ${estado.motivo}`;
 
-    case "FINALIZADA":
-      return `Matrícula finalizada. Nota media: ${estado.notaMedia}`;
+  case "FINALIZADA":
+    return `Matrícula finalizada. Nota media: ${estado.notaMedia}`;
 
-    default:
-      return "Estado desconocido";
+  default:
+    return assertNever(estado);
 
-  }
+}
 
 }
